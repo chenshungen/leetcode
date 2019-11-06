@@ -6,6 +6,8 @@ func main() {
 
 	//testSolveSudoku37()
 
+	testUniquePaths62()
+
 	//testIsSymmetric101()
 
 	//testSortedListToBST109()
@@ -28,5 +30,5 @@ func main() {
 
 	//testSortList148()
 
-	testTrailingZeroes172()
+	//testTrailingZeroes172()
 }
