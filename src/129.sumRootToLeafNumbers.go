@@ -53,15 +53,49 @@ func sumNumbers(root *TreeNode) int {
 	return sum
 }
 
+func maxPathSum(root *TreeNode) int {
+	if root == nil {
+		return 0
+	}
+
+	maxSum := root.Val.(int)
+
+	var dfs func(*TreeNode) int
+	// 返回，以 root 为起点，所有可能路径的 sum 值中的最大值。
+	dfs = func(root *TreeNode) int {
+		if root == nil {
+			return 0
+		}
+
+		left := max(0, dfs(root.Left))
+		right := max(0, dfs(root.Right))
+		sum := left + root.Val.(int) + right
+		if maxSum < sum {
+			maxSum = sum
+		}
+
+		return max(left, right) + root.Val.(int)
+	}
+
+	dfs(root)
+
+	return maxSum
+}
+
 func testSumNumbers129() {
-	tree := NewBinaryTree(1)
-	tree.Root.Left = NewTreeNode(2)
-	tree.Root.Right = NewTreeNode(3)
+	tree := NewBinaryTree(-10)
+	tree.Root.Left = NewTreeNode(9)
+	tree.Root.Right = NewTreeNode(20)
+
+	tree.Root.Right.Left = NewTreeNode(15)
+	tree.Root.Right.Right = NewTreeNode(7)
 
 	// tree.Root.Left.Left = NewTreeNode(3)
 	// tree.Root.Left.Right = NewTreeNode(3)
 
 	// tree.Root.Left.Left.Left = NewTreeNode(4)
 
-	fmt.Println(sumNumbers(tree.Root))
+	//fmt.Println(sumNumbers(tree.Root))
+
+	fmt.Println(maxPathSum(tree.Root))
 }

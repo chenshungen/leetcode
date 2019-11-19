@@ -1,6 +1,8 @@
 package main
 
-func numDistinct(s string, t string) int {
+import "fmt"
+
+func numDistinct2(s string, t string) int {
 	m, n := len(s), len(t)
 
 	dp := make([]int, m+1)
@@ -35,4 +37,31 @@ func numDistinct(s string, t string) int {
 	}
 
 	return dp[m]
+}
+
+func numDistinct(s string, t string) int {
+	m, n := len(s), len(t)
+	dp := make([][]int, n+1)
+	for i := 0; i < n+1; i++ {
+		dp[i] = make([]int, m+1)
+	}
+	for j := 0; j < m+1; j++ {
+		dp[0][j] = 1
+	}
+
+	for i := 1; i < n+1; i++ {
+		for j := 1; j < m+1; j++ {
+			if t[i-1] == s[j-1] {
+				dp[i][j] = dp[i][j-1] + dp[i-1][j-1]
+			} else {
+				dp[i][j] = dp[i][j-1]
+			}
+		}
+	}
+	return dp[n][m]
+}
+
+func testNumDistinct115() {
+	fmt.Println(numDistinct2("rabbbit", "rabbit"))
+	fmt.Println(numDistinct("rabbbit", "rabbit"))
 }

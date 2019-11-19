@@ -6,7 +6,7 @@ func main() {
 
 	//testSolveSudoku37()
 
-	testUniquePaths62()
+	//testUniquePaths62()
 
 	//testIsSymmetric101()
 
@@ -16,9 +16,13 @@ func main() {
 
 	//testFlatten114()
 
+	//testNumDistinct115()
+
 	//testGeneratePascalTriangle118()
 
 	//testTriangle120()
+
+	//testMaxProfit121_123()
 
 	//testIsPalindrome125()
 
@@ -29,6 +33,10 @@ func main() {
 	//testInsertionSortList147()
 
 	//testSortList148()
+
+	//testFindMin153()
+
+	testFindPeakElement162()
 
 	//testTrailingZeroes172()
 }
